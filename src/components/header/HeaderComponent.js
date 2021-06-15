@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { string } from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Row } from 'simple-flexbox';
@@ -7,6 +7,8 @@ import { SidebarContext } from 'hooks/useSidebar';
 import SLUGS from 'resources/slugs';
 import { IconBell, IconSearch } from 'assets/icons';
 import DropdownComponent from 'components/dropdown';
+import { removeCookie, removeLocalStorage } from '../../helpers/auth';
+import { auth } from '../../context/UserContext';
 
 const useStyles = createUseStyles((theme) => ({
     avatar: {
@@ -61,6 +63,16 @@ const useStyles = createUseStyles((theme) => ({
 
 function HeaderComponent() {
     const { push } = useHistory();
+    let [user, setUser]  = useState('');
+
+    let history = useHistory()
+
+    useEffect(() => {
+        auth().then(r => {
+            setUser(r);
+            console.log(r);
+        })
+    }, []);
     const { currentItem } = useContext(SidebarContext);
     const theme = useTheme();
     const classes = useStyles({ theme });
@@ -140,7 +152,7 @@ function HeaderComponent() {
                 <DropdownComponent
                     label={
                         <>
-                            <span className={classes.name}>Germán Llorente</span>
+                            <span className={classes.name}>{user.name}</span>
                             <img
                                 src='https://avatars3.githubusercontent.com/u/21162888?s=460&v=4'
                                 alt='avatar'
@@ -150,12 +162,22 @@ function HeaderComponent() {
                     }
                     options={[
                         {
+                            label: user.email,
+                            onClick: onSettingsClick
+                        },
+                        {
                             label: 'Settings',
                             onClick: onSettingsClick
                         },
                         {
                             label: 'Logout',
-                            onClick: () => console.log('logout')
+                            onClick: () => {
+                                localStorage.removeItem("isLoggedIn");
+                                removeCookie('token');
+                                removeLocalStorage('user');
+                                history.push('/login')
+                                console.log('logout');
+                            }
                         }
                     ]}
                     position={{

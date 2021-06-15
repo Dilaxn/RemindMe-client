@@ -6,7 +6,9 @@ import Theme from 'resources/theme';
 import Routes from 'routes';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-
+import 'react-toastify/dist/ReactToastify.css';
+// const Dotenv = require("dotenv-webpack");
+require('dotenv').config()
 ReactDOM.render(
     <ThemeProvider theme={Theme}>
         <Router>

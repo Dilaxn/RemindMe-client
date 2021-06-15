@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Column, Row } from 'simple-flexbox';
 import { createUseStyles } from 'react-jss';
 import MiniCardComponent from 'components/cards/MiniCardComponent';
 import TodayTrendsComponent from './TodayTrendsComponent';
 import UnresolvedTicketsComponent from './UnresolvedTicketsComponent';
 import TasksComponent from './TasksComponent';
+import { auth } from '../../context/UserContext';
+import { useHistory } from 'react-router';
 
 const useStyles = createUseStyles({
     cardsContainer: {
@@ -46,6 +48,16 @@ const useStyles = createUseStyles({
 });
 
 function DashboardComponent() {
+    let [user, setUser]  = useState('');
+
+    let history = useHistory()
+
+    useEffect(() => {
+        auth().then(r => {
+            setUser(r);
+            console.log(r);
+        })
+    }, []);
     const classes = useStyles();
     return (
         <Column>

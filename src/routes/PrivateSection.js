@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import { Column, Row } from 'simple-flexbox';
 import { SidebarComponent, SidebarContext } from 'components/sidebar';
 import HeaderComponent from 'components/header/HeaderComponent';
 import PrivateRoutes from './PrivateRoutes';
+import { useHistory } from 'react-router';
+import { auth } from '../context/UserContext';
 
 const useStyles = createUseStyles({
     container: {
@@ -24,6 +26,14 @@ const useStyles = createUseStyles({
 
 function PrivateSection() {
     const theme = useTheme();
+    let [jobData, setJobData] = useState([]);
+
+    let history = useHistory()
+
+    useEffect(() => {
+        auth().then(r => console.log(r))
+    }, []);
+
     const classes = useStyles({ theme });
 
     return (
