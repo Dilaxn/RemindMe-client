@@ -55,26 +55,26 @@ function SidebarComponent() {
             <MenuItem
                 id={SLUGS.overview}
                 items={[SLUGS.overviewTwo, SLUGS.overviewThree]}
-                title='Overview'
+                title='Request for Help'
                 icon={IconOverview}
             >
                 <MenuItem
                     id={SLUGS.overview}
-                    title='Sub Item 1'
+                    title='Add Request'
                     level={2}
                     icon={IconAgents}
                     onClick={() => onClick(SLUGS.overview)}
                 />
                 <MenuItem
                     id={SLUGS.overviewTwo}
-                    title='Sub Item 2'
+                    title='Pending Requests'
                     level={2}
                     icon={IconContacts}
                     onClick={() => onClick(SLUGS.overviewTwo)}
                 />
                 <MenuItem
                     id={SLUGS.overviewThree}
-                    title='Sub Item 3'
+                    title='Responses'
                     level={2}
                     icon={IconArticles}
                     onClick={() => onClick(SLUGS.overviewThree)}
@@ -82,7 +82,7 @@ function SidebarComponent() {
             </MenuItem>
             <MenuItem
                 id={SLUGS.tickets}
-                title='Tickets'
+                title='Your Tasks'
                 icon={IconTickets}
                 onClick={() => onClick(SLUGS.tickets)}
             />
@@ -116,7 +116,7 @@ function SidebarComponent() {
             </MenuItem>
             <MenuItem
                 id={SLUGS.contacts}
-                title='Contacts'
+                title='All Users'
                 icon={IconContacts}
                 onClick={() => onClick(SLUGS.contacts)}
             />
@@ -143,7 +143,7 @@ function SidebarComponent() {
                 id={SLUGS.settings}
                 title='Settings'
                 icon={IconSettings}
-                onClick={() => onClick(SLUGS.settings)}
+                onClick={() => onClick(SLUGS.profile)}
             />
 
             <MenuItem id='logout' title='Logout' icon={IconLogout} onClick={logout} />

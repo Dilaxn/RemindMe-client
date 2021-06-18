@@ -7,6 +7,7 @@ import UnresolvedTicketsComponent from './UnresolvedTicketsComponent';
 import TasksComponent from './TasksComponent';
 import { auth } from '../../context/UserContext';
 import { useHistory } from 'react-router';
+import { toast } from 'react-toastify';
 
 const useStyles = createUseStyles({
     cardsContainer: {
@@ -55,7 +56,7 @@ function DashboardComponent() {
     useEffect(() => {
         auth().then(r => {
             setUser(r);
-            console.log(r);
+            // console.log(r);
         })
     }, []);
     const classes = useStyles();

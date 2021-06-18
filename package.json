@@ -5,8 +5,10 @@
     "homepage": "https://llorentegerman.github.io/react-admin-dashboard",
     "dependencies": {
         "axios": "^0.21.1",
+        "classnames": "^2.3.1",
         "dotenv": "^10.0.0",
         "js-cookie": "^2.2.1",
+        "muicss": "^0.10.3",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
         "react-burger-menu": "^2.6.13",
@@ -43,7 +45,12 @@
         ]
     },
     "devDependencies": {
+        "@material-ui/core": "^4.11.4",
+        "@material-ui/pickers": "^3.3.10",
+        "@material-ui/styles": "^4.11.4",
+        "components": "^0.1.0",
         "gh-pages": "^2.0.1",
-        "jsonwebtoken": "^8.5.1"
+        "jsonwebtoken": "^8.5.1",
+        "reactstrap": "^8.9.0"
     }
 }

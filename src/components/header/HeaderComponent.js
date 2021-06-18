@@ -9,6 +9,8 @@ import { IconBell, IconSearch } from 'assets/icons';
 import DropdownComponent from 'components/dropdown';
 import { removeCookie, removeLocalStorage } from '../../helpers/auth';
 import { auth } from '../../context/UserContext';
+import u from "../../context/UserContext"
+import { toast } from 'react-toastify';
 
 const useStyles = createUseStyles((theme) => ({
     avatar: {
@@ -61,17 +63,18 @@ const useStyles = createUseStyles((theme) => ({
     }
 }));
 
-function HeaderComponent() {
+function HeaderComponent(props) {
+    console.log("props:"+props.props.email);
+const u= props.props;
     const { push } = useHistory();
     let [user, setUser]  = useState('');
-
+    let [m, setM]  = useState('');
+    // setUser(props.props);
+    // setM(user.email.split(/@(.+)/)[0])
     let history = useHistory()
-
+    //
     useEffect(() => {
-        auth().then(r => {
-            setUser(r);
-            console.log(r);
-        })
+        // toast.success(`Hey ${props.props.name}, Welcome back!`);
     }, []);
     const { currentItem } = useContext(SidebarContext);
     const theme = useTheme();
@@ -83,7 +86,7 @@ function HeaderComponent() {
             title = 'Dashboard';
             break;
         case [SLUGS.overview, SLUGS.overviewTwo, SLUGS.overviewThree].includes(currentItem):
-            title = 'Overview';
+            title = 'Request Section';
             break;
         case currentItem === SLUGS.tickets:
             title = 'Tickets';
@@ -152,7 +155,7 @@ function HeaderComponent() {
                 <DropdownComponent
                     label={
                         <>
-                            <span className={classes.name}>{user.name}</span>
+                            <span className={classes.name}>{props.props.name}</span>
                             <img
                                 src='https://avatars3.githubusercontent.com/u/21162888?s=460&v=4'
                                 alt='avatar'
@@ -161,10 +164,7 @@ function HeaderComponent() {
                         </>
                     }
                     options={[
-                        {
-                            label: user.email,
-                            onClick: onSettingsClick
-                        },
+
                         {
                             label: 'Settings',
                             onClick: onSettingsClick

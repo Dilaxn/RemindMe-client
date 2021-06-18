@@ -5,6 +5,7 @@ import axios from 'axios';
 import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import { auth } from '../context/UserContext';
 // import { GoogleLogin } from 'react-google-login';
 // import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
@@ -76,9 +77,14 @@ const Login = ({ history }) => {
           email,
           password: password1
         })
+          .then(res => {console.log("res"+res);
+            // toast.success(`Hey ${res.data.user.name}, Welcome back!`);
+          return res;})
         .then(res => {
-          console.log(res);
+
+
           localStorage.setItem('id_token', res.data.token)
+          auth().then(r=>console.log(r))
           authenticate(res, () => {
             setFormData({
               ...formData,
@@ -87,6 +93,7 @@ const Login = ({ history }) => {
               textChange: 'Submitted'
             });
             console.log(isAuth());
+
             // isAuth() && isAuth().role === 'admin'
             //   ? history.push('/admin')
             //   : history.push('/private');
@@ -95,7 +102,6 @@ const Login = ({ history }) => {
 
 
 
-            toast.success(`Hey ${res.data.user.name}, Welcome back!`);
           });
         })
         .catch(e => {

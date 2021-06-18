@@ -26,12 +26,13 @@ const useStyles = createUseStyles({
 
 function PrivateSection() {
     const theme = useTheme();
-    let [jobData, setJobData] = useState([]);
+    let [user, setUser]  = useState('');
 
     let history = useHistory()
 
     useEffect(() => {
-        auth().then(r => console.log(r))
+        auth().then(r => setUser(r))
+
     }, []);
 
     const classes = useStyles({ theme });
@@ -41,7 +42,7 @@ function PrivateSection() {
             <Row className={classes.container}>
                 <SidebarComponent />
                 <Column flexGrow={1} className={classes.mainBlock}>
-                    <HeaderComponent />
+                    <HeaderComponent props={user} />
                     <div className={classes.contentBlock}>
                         <PrivateRoutes />
                     </div>
