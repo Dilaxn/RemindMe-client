@@ -68,7 +68,7 @@ function HeaderComponent({ term, onItemClick }) {
     const [imageHash, setImageHash]  = useState(Date.now());
     const { push } = useHistory();
     let [user, setUser]  = useState('');
-    let [m, setM]  = useState(true);
+    let [m, setM]  = useState('');
     // setUser(props.props);
     // setM(user.email.split(/@(.+)/)[0])
     let history = useHistory()
@@ -79,6 +79,16 @@ function HeaderComponent({ term, onItemClick }) {
         auth().then(r=>{
             setUser(r)
         })
+        var today = new Date()
+        var curHr = today.getHours()
+
+        if (curHr < 12) {
+            setM('good morning')
+        } else if (curHr < 18) {
+            setM('good afternoon')
+        } else {
+            setM('good evening')
+        }
         setImageHash(Date.now)
     }, [onItemClick]);
     const { currentItem } = useContext(SidebarContext);
@@ -134,20 +144,8 @@ function HeaderComponent({ term, onItemClick }) {
                         label={<IconBell />}
                         options={[
                             {
-                                label: 'Notification #1',
+                                label: m+"  "+user.name,
                                 onClick: () => console.log('Notification #2')
-                            },
-                            {
-                                label: 'Notification #2',
-                                onClick: () => console.log('Notification #2')
-                            },
-                            {
-                                label: 'Notification #3',
-                                onClick: () => console.log('Notification #3')
-                            },
-                            {
-                                label: 'Notification #4',
-                                onClick: () => console.log('Notification #4')
                             }
                         ]}
                         position={{
@@ -171,8 +169,11 @@ function HeaderComponent({ term, onItemClick }) {
                     options={[
 
                         {
-                            label: 'Settings',
-                            onClick: onSettingsClick
+                            label: 'Profile',
+                            onClick: () => {
+                                history.push('/agents')
+
+                            }
                         },
                         {
                             label: 'Logout',

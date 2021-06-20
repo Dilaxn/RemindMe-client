@@ -51,7 +51,7 @@ export default function PendingRequests() {
 
 
 
-        taskData.map(r => {if(r.doneBy=='' && r.createdBy== user.Id) {
+        taskData.map(r => {if(r.doneBy=='' && r.createdBy== user.email) {
             const data = [
                 r.taskName,
                 r.taskDescription,
@@ -166,7 +166,7 @@ export default function PendingRequests() {
 
                             return axios.delete(`${process.env.REACT_APP_API_URL}/task`, {
                                 headers: {
-                                    'Authorization': `${user.Id}`,
+                                    'Authorization': `${user.email}`,
                                     'Content-Type': 'application/json',
                                 },
                                 data: JSON.stringify({ tasks })

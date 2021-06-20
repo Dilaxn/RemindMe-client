@@ -24,7 +24,7 @@ const data = [
 
 
 
-export default function Responses() {
+export default function PendingTasks() {
     let [taskData, setTaskData]  = useState([]);
     let [user,setUser]= useState([]);
     const detailss = [];
@@ -51,17 +51,21 @@ export default function Responses() {
 
 
 
-        taskData.map(r => {if(r.doneBy!='' && r.createdBy== user.Id) {
-            const data = [
-                r.taskName,
-                r.taskDescription,
-                r.doneBy,
-                r.users.length,
-                r.comments,
-                r._id
-            ]
+        taskData.map(r => {if(r.doneBy=='' ) {
+            console.log(r.users);
+            if(r.users.includes(user.Id))
+            {
+                const data = [
+                    r.taskName,
+                    r.taskDescription,
+                    r.createdBy,
+                    r.users.length,
+                    r.comments,
+                    r._id
+                ]
 
-            detailss.push(data);
+                detailss.push(data);
+            }
         }
         });
 
@@ -130,7 +134,7 @@ export default function Responses() {
             }
         },
         {
-            name: "Done By",
+            name: "Requested By",
             options: {
                 display: true,
             }
@@ -164,15 +168,15 @@ export default function Responses() {
 
                                 let tasks = [value]
 
-                                return axios.delete(`${process.env.REACT_APP_API_URL}/task/full`, {
+                                return axios.delete(`${process.env.REACT_APP_API_URL}/task`, {
                                     headers: {
-                                        'Authorization': `${user.Id}`,
+                                        'Authorization': `${user.email}`,
                                         'Content-Type': 'application/json',
                                     },
                                     data: JSON.stringify({ tasks })
                                 })
                                     .then(function(response) {
-                                        toast.success(`Hey  Task Successfully Deleted!`);
+                                        toast.success(`Hey  Task Successfully Removed!`);
                                         readAllTasks().then(r => {
                                             console.log(r);
                                             setTaskData(r);
@@ -180,7 +184,7 @@ export default function Responses() {
                                         console.log(response);
                                     })
 
-                            }}>Delete</Button>
+                            }}>Complete</Button>
                     )
                     //         // <FormControlLabel
                     //         //     label={value ? "Yes" : "No"}

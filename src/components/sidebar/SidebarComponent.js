@@ -102,18 +102,18 @@ function SidebarComponent() {
                 icon={BsListCheck}
             >
                 <MenuItem
-                    id={SLUGS.ideas}
+                    id={SLUGS.ideass}
                     title='Pending Tasks'
                     level={2}
                     icon={BsAward}
-                    onClick={() => onClick(SLUGS.ideas)}
+                    onClick={() => onClick(SLUGS.ideass)}
                 />
                 <MenuItem
-                    id={SLUGS.ideasTwo}
+                    id={SLUGS.ideasss}
                     title='Completed Tasks'
                     level={2}
                     icon={BsAwardFill}
-                    onClick={() => onClick(SLUGS.ideasTwo)}
+                    onClick={() => onClick(SLUGS.ideasss)}
                 />
                 {/*<MenuItem*/}
                 {/*    id={SLUGS.ideasThree}*/}
@@ -131,19 +131,19 @@ function SidebarComponent() {
             />
             <MenuItem
                 id={SLUGS.agents}
-                title='Agents'
+                title='Profile'
                 icon={BsPersonBoundingBox}
                 onClick={() => onClick(SLUGS.agents)}
             />
             <MenuItem
                 id={SLUGS.articles}
-                title='Articles'
+                title='Feedback'
                 icon={IconArticles}
                 onClick={() => onClick(SLUGS.articles)}
             />
             <MenuItem
                 id={SLUGS.subscription}
-                title='Subscription'
+                title='About Me'
                 icon={IconSubscription}
                 onClick={() => onClick(SLUGS.subscription)}
             />
