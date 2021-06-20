@@ -25,6 +25,7 @@ import { convertSlugToUrl } from 'resources/utilities';
 import LogoComponent from './LogoComponent';
 import Menu from './MenuComponent';
 import MenuItem from './MenuItemComponent';
+import { removeCookie, removeLocalStorage } from '../../helpers/auth';
 const useStyles = createUseStyles({
     separator: {
         borderTop: ({ theme }) => `1px solid ${theme.color.lightGrayishBlue}`,
@@ -39,6 +40,7 @@ function SidebarComponent() {
     const theme = useTheme();
     const classes = useStyles({ theme });
     const isMobile = window.innerWidth <= 1080;
+    let history = useHistory()
 
     async function logout() {
         push(SLUGS.login);
@@ -146,14 +148,15 @@ function SidebarComponent() {
                 onClick={() => onClick(SLUGS.subscription)}
             />
             <div className={classes.separator}></div>
-            <MenuItem
-                id={SLUGS.settings}
-                title='Settings'
-                icon={IconSettings}
-                onClick={() => onClick(SLUGS.profile)}
-            />
 
-            <MenuItem id='logout' title='Logout' icon={IconLogout} onClick={logout} />
+
+            <MenuItem id='logout' title='Logout' icon={IconLogout} onClick={() => {
+                localStorage.removeItem("isLoggedIn");
+                removeCookie('token');
+                removeLocalStorage('user');
+                history.push('/login')
+                console.log('logout');
+            }} />
         </Menu>
     );
 }

@@ -14,7 +14,7 @@ export default {
     users: '/users',
     agents: '/agents',
     articles: '/articles',
-    settings: '/settings',
+    settings: '/login',
     profile: '/profile',
     subscription: '/subscription',
     // auth

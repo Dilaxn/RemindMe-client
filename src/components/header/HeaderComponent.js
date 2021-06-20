@@ -103,7 +103,7 @@ function HeaderComponent({ term, onItemClick }) {
             title = 'Contacts';
             break;
         case currentItem === SLUGS.agents:
-            title = 'Agents';
+            title = 'Profile';
             break;
         case currentItem === SLUGS.articles:
             title = 'Articles';
