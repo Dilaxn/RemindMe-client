@@ -7,7 +7,7 @@ import axios from "axios";
 import {useHistory} from "react-router";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { AccountCircle,CheckCircle,AlternateEmail } from '@material-ui/icons';
+import { AccountCircle, CheckCircle, AlternateEmail, PersonOutline, Visibility } from '@material-ui/icons';
 import { readAllTasks } from '../../context/TaskContext';
 import { auth } from '../../context/UserContext';
 import { useLogger } from '@material-ui/data-grid';
@@ -58,13 +58,14 @@ export default function Profile({ term }) {
     const [imageHash, setImageHash]  = useState(Date.now());
 
     let [user,setUser]= useState('');
-    let [pic,setPic]= useState('');
+    let [name,setName]= useState('');
     let [up,setUp]= useState(true);
 
 
     useEffect(() => {
         auth().then(r=>{
             setUser(r)
+            setName(r.name)
         })
         console.log("updated");
     }, [up]);
@@ -136,16 +137,45 @@ export default function Profile({ term }) {
                         className={classes.margin}
                         id="input-with-icon-textfield"
                         label="Name"
-                               value={user.name}
+                               value={name}
+                               onChange={e=>setName(e.target.value)}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <AccountCircle />
+                                    <PersonOutline />
                                 </InputAdornment>
+
                             ),
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <AccountCircle onClick={e=>{
+                                        const leaveEntitlement = {
+                                            "_id": user.Id,
+                                            "name": name
+
+
+                                        }
+                                        console.log(leaveEntitlement)
+                                        return axios.post(`${process.env.REACT_APP_API_URL}/name`, leaveEntitlement).then(function (response) {
+                                                setName(response.data.name)
+
+                                                alert("Successfully Added")
+                                            }
+                                        )
+                                            .catch(function (error) {
+                                                alert("Please check all the details")
+                                                console.log(error);
+                                            })
+                                    }} />
+                                </InputAdornment>
+
+                            )
                         }}
+
                     />
-                        <TextField style={{marginTop:"10px"}}
+
+                        <br/>
+                        <TextField style={{marginTop:"60px"}}
                             className={classes.margin}
                             id="input-with-icon-textfield"
                                    value={user.role}
@@ -153,16 +183,17 @@ export default function Profile({ term }) {
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <CheckCircle />
+                                        <Visibility />
                                     </InputAdornment>
                                 ),
                             }}
                         />
-                        <br/>
-                        <TextField style={{marginTop:"10px"}}
+
+                        <TextField style={{marginTop:"20px"}}
                             className={classes.margin}
                             id="input-with-icon-textfield"
                             label="Email"
+                                   contentEditable={'false'}
                                    value={user.email}
                             InputProps={{
                                 startAdornment: (
