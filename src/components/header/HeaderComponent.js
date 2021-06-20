@@ -161,7 +161,7 @@ function HeaderComponent({ term, onItemClick }) {
                             <span className={classes.name}>{user.name}</span>
                             <img
                                 src={`${process.env.REACT_APP_API_URL}/${user.Id}/pic?${imageHash}`}
-                                alt='avatar'
+                                alt='a'
                                 className={classes.avatar}
                             />
                         </>

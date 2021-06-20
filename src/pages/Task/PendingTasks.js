@@ -239,7 +239,7 @@ export default function PendingTasks() {
         <div style={{ height: 400, width: '100%' }}>
             <ToastContainer />
             <MUIDataTable
-                title={"Employee List"}
+                title={"Pending Tasks"}
                 data={detailss}
                 columns={columns}
                 options={options}

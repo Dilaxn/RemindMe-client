@@ -24,7 +24,7 @@ const data = [
 
 
 
-export default function PendingTasks() {
+export default function CompletedTasks() {
     let [taskData, setTaskData]  = useState([]);
     let [user,setUser]= useState([]);
     const detailss = [];
@@ -51,10 +51,8 @@ export default function PendingTasks() {
 
 
 
-        taskData.map(r => {if(r.doneBy=='' ) {
-            console.log(r.users);
-            if(r.users.includes(user.Id))
-            {
+        taskData.map(r => {if(r.doneBy==user.email ) {
+
                 const data = [
                     r.taskName,
                     r.taskDescription,
@@ -66,7 +64,7 @@ export default function PendingTasks() {
 
                 detailss.push(data);
             }
-        }
+
         });
 
     }
@@ -159,6 +157,7 @@ export default function PendingTasks() {
 
                     return (
                         <Button
+                            disabled={true}
                             variant="contained" color="secondary"
                             onClick={(e) => {
                                 // console.log(value);
@@ -184,7 +183,7 @@ export default function PendingTasks() {
                                         console.log(response);
                                     })
 
-                            }}>Complete</Button>
+                            }}>Done</Button>
                     )
                     //         // <FormControlLabel
                     //         //     label={value ? "Yes" : "No"}
@@ -239,7 +238,7 @@ export default function PendingTasks() {
         <div style={{ height: 400, width: '100%' }}>
             <ToastContainer />
             <MUIDataTable
-                title={"Employee List"}
+                title={"My Completions"}
                 data={detailss}
                 columns={columns}
                 options={options}

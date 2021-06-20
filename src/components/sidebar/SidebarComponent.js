@@ -97,23 +97,23 @@ function SidebarComponent() {
             {/*/>*/}
             <MenuItem
                 id={SLUGS.ideas}
-                items={[SLUGS.ideasTwo, SLUGS.ideasThree]}
+                items={[SLUGS.pending, SLUGS.completed]}
                 title='Your Tasks'
                 icon={BsListCheck}
             >
                 <MenuItem
-                    id={SLUGS.ideass}
+                    id={SLUGS.pending}
                     title='Pending Tasks'
                     level={2}
                     icon={BsAward}
-                    onClick={() => onClick(SLUGS.ideass)}
+                    onClick={() => onClick(SLUGS.pending)}
                 />
                 <MenuItem
-                    id={SLUGS.ideasss}
+                    id={SLUGS.completed}
                     title='Completed Tasks'
                     level={2}
                     icon={BsAwardFill}
-                    onClick={() => onClick(SLUGS.ideasss)}
+                    onClick={() => onClick(SLUGS.completed)}
                 />
                 {/*<MenuItem*/}
                 {/*    id={SLUGS.ideasThree}*/}
