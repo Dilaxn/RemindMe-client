@@ -8,6 +8,8 @@ import {useHistory} from "react-router";
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { AccountCircle,CheckCircle,AlternateEmail } from '@material-ui/icons';
+import { readAllTasks } from '../../context/TaskContext';
+import { auth } from '../../context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,6 +51,16 @@ export default function Profile(props) {
     let [showForm, setShowForm] = useState(false);
     const [picture, setPicture] = useState(null);
     const [imgData, setImgData] = useState(new FormData());
+
+    let [user,setUser]= useState([]);
+
+
+    useEffect(() => {
+        auth().then(r => {
+            setUser(r)
+            console.log(r);
+        })
+    }, []);
     const classes = useStyles();
     // const onChangePicture = e => {
     //     if (e.target) {
@@ -108,6 +120,7 @@ export default function Profile(props) {
                         className={classes.margin}
                         id="input-with-icon-textfield"
                         label="Name"
+                               value={user.name}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -119,6 +132,7 @@ export default function Profile(props) {
                         <TextField style={{marginTop:"10px"}}
                             className={classes.margin}
                             id="input-with-icon-textfield"
+                                   value={user.role}
                             label="User Type"
                             InputProps={{
                                 startAdornment: (
@@ -133,6 +147,7 @@ export default function Profile(props) {
                             className={classes.margin}
                             id="input-with-icon-textfield"
                             label="Email"
+                                   value={user.email}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
