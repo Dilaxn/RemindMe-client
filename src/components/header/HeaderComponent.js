@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { string } from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Row } from 'simple-flexbox';
@@ -11,7 +11,6 @@ import { removeCookie, removeLocalStorage } from '../../helpers/auth';
 import { auth } from '../../context/UserContext';
 import u from "../../context/UserContext"
 import { toast } from 'react-toastify';
-
 const useStyles = createUseStyles((theme) => ({
     avatar: {
         height: 35,
@@ -63,19 +62,25 @@ const useStyles = createUseStyles((theme) => ({
     }
 }));
 
-function HeaderComponent(props) {
-    console.log("props:"+props.props.email);
-const u= props.props;
+function HeaderComponent({ term, onItemClick }) {
+
+
+    const [imageHash, setImageHash]  = useState(Date.now());
     const { push } = useHistory();
     let [user, setUser]  = useState('');
-    let [m, setM]  = useState('');
+    let [m, setM]  = useState(true);
     // setUser(props.props);
     // setM(user.email.split(/@(.+)/)[0])
     let history = useHistory()
     //
+    // const im = imageHash;
     useEffect(() => {
         // toast.success(`Hey ${props.props.name}, Welcome back!`);
-    }, []);
+        auth().then(r=>{
+            setUser(r)
+        })
+        setImageHash(Date.now)
+    }, [onItemClick]);
     const { currentItem } = useContext(SidebarContext);
     const theme = useTheme();
     const classes = useStyles({ theme });
@@ -130,7 +135,7 @@ const u= props.props;
                         options={[
                             {
                                 label: 'Notification #1',
-                                onClick: () => console.log('Notification #1')
+                                onClick: () => console.log('Notification #2')
                             },
                             {
                                 label: 'Notification #2',
@@ -155,9 +160,9 @@ const u= props.props;
                 <DropdownComponent
                     label={
                         <>
-                            <span className={classes.name}>{props.props.name}</span>
+                            <span className={classes.name}>{user.name}</span>
                             <img
-                                src='https://avatars3.githubusercontent.com/u/21162888?s=460&v=4'
+                                src={`${process.env.REACT_APP_API_URL}/${user.Id}/pic?${imageHash}`}
                                 alt='avatar'
                                 className={classes.avatar}
                             />

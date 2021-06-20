@@ -1,7 +1,7 @@
 import { Button, Container, FormControlLabel, InputAdornment, Radio, RadioGroup, TextField } from '@material-ui/core';
 import FormLabel from "@material-ui/core/FormLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
-import React, {useEffect, useState} from "react";
+import React, { useCallback, useEffect, useState } from 'react';
 import MUIDataTable from "mui-datatables";
 import axios from "axios";
 import {useHistory} from "react-router";
@@ -10,6 +10,9 @@ import Avatar from '@material-ui/core/Avatar';
 import { AccountCircle,CheckCircle,AlternateEmail } from '@material-ui/icons';
 import { readAllTasks } from '../../context/TaskContext';
 import { auth } from '../../context/UserContext';
+import { useLogger } from '@material-ui/data-grid';
+import { toast, ToastContainer } from 'react-toastify';
+import HeaderComponent from '../../components/header/HeaderComponent';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,20 +50,24 @@ const datatableData = [
     ["Gaston Festus", "Example Inc.", "Tampa", "FL"],
 ];
 
-export default function Profile(props) {
+
+export default function Profile({ term }) {
+
     let [showForm, setShowForm] = useState(false);
     const [picture, setPicture] = useState(null);
-    const [imgData, setImgData] = useState(new FormData());
+    const [imageHash, setImageHash]  = useState(Date.now());
 
-    let [user,setUser]= useState([]);
+    let [user,setUser]= useState('');
+    let [pic,setPic]= useState('');
+    let [up,setUp]= useState(true);
 
 
     useEffect(() => {
-        auth().then(r => {
+        auth().then(r=>{
             setUser(r)
-            console.log(r);
         })
-    }, []);
+        console.log("updated");
+    }, [up]);
     const classes = useStyles();
     // const onChangePicture = e => {
     //     if (e.target) {
@@ -87,32 +94,41 @@ export default function Profile(props) {
     const tokenString = localStorage.getItem('id_token');
     let history = useHistory()
     return (
+        <div>
+            <ToastContainer />
 <center>
     <Container maxWidth="sm" style={{marginTop:"20px"}}>
-                <form>
-                    <Avatar alt="Remy Sharp" src="https://www.nobelprize.org/images/einstein-12923-content-portrait-mobile-tiny.jpg" className={classes.large} />
+                <form >
+                    <Avatar key={Date.now()}  alt="profile pic" src={`${process.env.REACT_APP_API_URL}/${user.Id}/pic?${imageHash}`} className={classes.large} />
                     <input style={{marginTop:"20px",width:"50%"}}  type="file" onChange={onChangePicture} />
 <br />
                     <Button
                         style={{marginTop:"20px"}}
-                        // onClick={() => {
-                        //     console.log(imgData)
-                        //     let data = new FormData();
-                        //
-                        //     data.append('avatar', picture)
-                        //
-                        //     return axios.patch('/employees/me/avatar', data, {
-                        //         headers: {
-                        //             Authorization: `Bearer ${tokenString}`,
-                        //             "Content-type": "multipart/form-data"
-                        //         }
-                        //     }).then(res => {
-                        //         window.location.reload();
-                        //         alert("SuccessFully Updated");
-                        //
-                        //     })
-                        //         .catch(err=>alert("error"))
-                        // }}
+                        onClick={() => {
+
+                            let data = new FormData();
+
+                            data.append('avatar', picture)
+                            data.append('employee', user.Id)
+
+                            console.log(data)
+                            return axios.patch(`${process.env.REACT_APP_API_URL}/pic`,data , {
+                                headers: {
+                                    "Content-type": "multipart/form-data"
+                                }
+                            }).then(res => {
+                                // setPic(`${process.env.REACT_APP_API_URL}/${user.Id}/pic`)
+                                // auth().then(r => {
+                                //     setUser(r)
+                                //     console.log(r);
+                                // })
+                                toast.success(`SuccessFully Updated`);
+
+                                setImageHash(Date.now());
+
+                            })
+                                .catch(err=>  toast.error(`Please check your file type`))
+                        }}
                         variant="contained" color="primary" >Upload!</Button>
                     <br/>
                     <div style={{marginTop:"20px"}}>
@@ -156,10 +172,11 @@ export default function Profile(props) {
                                 ),
                             }}
                         />
+
                     </div>
                 </form>
     </Container>
 </center>
-
+        </div>
     );
 }
