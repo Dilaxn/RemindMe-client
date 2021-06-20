@@ -11,7 +11,7 @@ export default {
     ideas: '/ideas',
     ideasTwo: '/ideas/two',
     ideasThree: '/ideas/three',
-    contacts: '/contacts',
+    users: '/users',
     agents: '/agents',
     articles: '/articles',
     settings: '/settings',

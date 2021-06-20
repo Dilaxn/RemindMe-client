@@ -13,11 +13,18 @@ import {
     IconSubscription,
     IconTickets
 } from 'assets/icons';
+import {
+    BsAward, BsAwardFill,
+    BsCheckCircle,
+    BsFileEarmarkPlus,
+    BsFillBookmarkFill,
+    BsFillCursorFill,
+    BsListCheck, BsPersonBoundingBox
+} from 'react-icons/bs';
 import { convertSlugToUrl } from 'resources/utilities';
 import LogoComponent from './LogoComponent';
 import Menu from './MenuComponent';
 import MenuItem from './MenuItemComponent';
-
 const useStyles = createUseStyles({
     separator: {
         borderTop: ({ theme }) => `1px solid ${theme.color.lightGrayishBlue}`,
@@ -56,74 +63,74 @@ function SidebarComponent() {
                 id={SLUGS.overview}
                 items={[SLUGS.overviews, SLUGS.overviewss]}
                 title='Request for Help'
-                icon={IconOverview}
+                icon={BsFillCursorFill}
             >
                 <MenuItem
                     id={SLUGS.overview}
                     title='Add Request'
                     level={2}
-                    icon={IconAgents}
+                    icon={BsFileEarmarkPlus}
                     onClick={() => onClick(SLUGS.overview)}
                 />
                 <MenuItem
                     id={SLUGS.overviews}
                     title='Pending Requests'
                     level={2}
-                    icon={IconContacts}
+                    icon={BsFillBookmarkFill}
                     onClick={() => onClick(SLUGS.overviews)}
                 />
                 <MenuItem
                     id={SLUGS.overviewss}
                     title='Responses'
                     level={2}
-                    icon={IconArticles}
+                    icon={BsCheckCircle}
                     onClick={() => onClick(SLUGS.overviewss)}
                 />
             </MenuItem>
-            <MenuItem
-                id={SLUGS.tickets}
-                title='Your Tasks'
-                icon={IconTickets}
-                onClick={() => onClick(SLUGS.tickets)}
-            />
+            {/*<MenuItem*/}
+            {/*    id={SLUGS.tickets}*/}
+            {/*    title='Your Tasks'*/}
+            {/*    icon={IconTickets}*/}
+            {/*    onClick={() => onClick(SLUGS.tickets)}*/}
+            {/*/>*/}
             <MenuItem
                 id={SLUGS.ideas}
                 items={[SLUGS.ideasTwo, SLUGS.ideasThree]}
-                title='Ideas'
-                icon={IconIdeas}
+                title='Your Tasks'
+                icon={BsListCheck}
             >
                 <MenuItem
                     id={SLUGS.ideas}
-                    title='Sub Item 1'
+                    title='Pending Tasks'
                     level={2}
-                    icon={IconAgents}
+                    icon={BsAward}
                     onClick={() => onClick(SLUGS.ideas)}
                 />
                 <MenuItem
                     id={SLUGS.ideasTwo}
-                    title='Sub Item 2'
+                    title='Completed Tasks'
                     level={2}
-                    icon={IconContacts}
+                    icon={BsAwardFill}
                     onClick={() => onClick(SLUGS.ideasTwo)}
                 />
-                <MenuItem
-                    id={SLUGS.ideasThree}
-                    title='Sub Item 3'
-                    level={2}
-                    icon={IconArticles}
-                    onClick={() => onClick(SLUGS.ideasThree)}
-                />
+                {/*<MenuItem*/}
+                {/*    id={SLUGS.ideasThree}*/}
+                {/*    title='Sub Item 3'*/}
+                {/*    level={2}*/}
+                {/*    icon={IconArticles}*/}
+                {/*    onClick={() => onClick(SLUGS.ideasThree)}*/}
+                {/*/>*/}
             </MenuItem>
             <MenuItem
-                id={SLUGS.contacts}
+                id={SLUGS.users}
                 title='All Users'
                 icon={IconContacts}
-                onClick={() => onClick(SLUGS.contacts)}
+                onClick={() => onClick(SLUGS.users)}
             />
             <MenuItem
                 id={SLUGS.agents}
                 title='Agents'
-                icon={IconAgents}
+                icon={BsPersonBoundingBox}
                 onClick={() => onClick(SLUGS.agents)}
             />
             <MenuItem
