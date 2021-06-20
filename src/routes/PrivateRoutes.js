@@ -5,6 +5,8 @@ import LoadingComponent from 'components/loading';
 import Profile from './Profile';
 // import AddRequest from '../pages/Request/AddRequest';
 const AddReqComponent = lazy(() => import('../pages/Request/AddRequest'));
+const PendingRequests = lazy(() => import('../pages/Request/PendingRequests'));
+const Responses = lazy(() => import('../pages/Request/Responses'));
 
 const DashboardComponent = lazy(() => import('./dashboard'));
 
@@ -13,9 +15,12 @@ function PrivateRoutes() {
         <Suspense fallback={<LoadingComponent loading />}>
             <Switch>
                 <Route exact path={SLUGS.dashboard} component={DashboardComponent} />
-                <Route exact path={SLUGS.overviewTwo} render={() => <div>overviewTwo</div>} />
+                <Route exact path={SLUGS.overviewTwo} render={AddReqComponent} />
                 <Route exact path={SLUGS.overviewThree} render={() => <div>overviewThree</div>} />
                 <Route exact path={SLUGS.overview} component={AddReqComponent} />
+                <Route exact path={SLUGS.overviews} component={PendingRequests} />
+                <Route exact path={SLUGS.overviewss} component={Responses} />
+
                 <Route exact path={SLUGS.tickets} render={() => <div>tickets</div>} />
                 <Route exact path={SLUGS.ideasTwo} render={() => <div>ideasTwo</div>} />
                 <Route exact path={SLUGS.ideasThree} render={() => <div>ideasThree</div>} />

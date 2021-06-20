@@ -2,6 +2,9 @@ export default {
     // private
     dashboard: '/dashboard',
     overview: '/overview',
+    overviews: '/overviews',
+    overviewss: '/overviewss',
+
     overviewTwo: '/overview/two',
     overviewThree: '/overview/three',
     tickets: '/tickets',

@@ -54,7 +54,7 @@ function SidebarComponent() {
             />
             <MenuItem
                 id={SLUGS.overview}
-                items={[SLUGS.overviewTwo, SLUGS.overviewThree]}
+                items={[SLUGS.overviews, SLUGS.overviewss]}
                 title='Request for Help'
                 icon={IconOverview}
             >
@@ -66,18 +66,18 @@ function SidebarComponent() {
                     onClick={() => onClick(SLUGS.overview)}
                 />
                 <MenuItem
-                    id={SLUGS.overviewTwo}
+                    id={SLUGS.overviews}
                     title='Pending Requests'
                     level={2}
                     icon={IconContacts}
-                    onClick={() => onClick(SLUGS.overviewTwo)}
+                    onClick={() => onClick(SLUGS.overviews)}
                 />
                 <MenuItem
-                    id={SLUGS.overviewThree}
+                    id={SLUGS.overviewss}
                     title='Responses'
                     level={2}
                     icon={IconArticles}
-                    onClick={() => onClick(SLUGS.overviewThree)}
+                    onClick={() => onClick(SLUGS.overviewss)}
                 />
             </MenuItem>
             <MenuItem

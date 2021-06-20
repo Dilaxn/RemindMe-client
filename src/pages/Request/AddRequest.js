@@ -78,6 +78,7 @@ export default function AddRequest() {
                                 <TextField
                                     id="outlined-select-currency-native"
                                     label="Task Name"
+                                    value={taskName}
                                     onChange={e => setTaskName(e.target.value)}
                                     helperText="Input task name"
                                     variant="outlined"
@@ -86,6 +87,7 @@ export default function AddRequest() {
                                 </TextField>
                                 <TextField
                                     id="outlined-select-currency-native"
+                                    value={taskDescription}
                                     label="Task Description"
                                     onChange={e => setTaskDescription(e.target.value)}
                                     helperText="Input task description"
@@ -120,7 +122,7 @@ export default function AddRequest() {
                                 </FormControl>
                                 <TextField
                                     id="outlined-select-currency-native"
-
+value={comments}
                                     label="Comments"
                                     onChange={e => setComments(e.target.value)}
                                     helperText="Any Comments"
