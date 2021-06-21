@@ -159,11 +159,11 @@ export default function Profile({ term }) {
                                         return axios.post(`${process.env.REACT_APP_API_URL}/name`, leaveEntitlement).then(function (response) {
                                                 setName(response.data.name)
 
-                                                alert("Successfully Added")
+                                            toast.success(`SuccessFully Updated`);
                                             }
                                         )
                                             .catch(function (error) {
-                                                alert("Please check all the details")
+                                                toast.error(`Error updating`);
                                                 console.log(error);
                                             })
                                     }} />

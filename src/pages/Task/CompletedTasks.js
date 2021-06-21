@@ -51,7 +51,7 @@ export default function CompletedTasks() {
 
 
 
-        taskData.map(r => {if(r.doneBy==user.email ) {
+        taskData.map(r => {if(r.doneBy===user.email && r.createdBy!==user.email ) {
 
                 const data = [
                     r.taskName,

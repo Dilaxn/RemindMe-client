@@ -11,6 +11,7 @@ import { removeCookie, removeLocalStorage } from '../../helpers/auth';
 import { auth } from '../../context/UserContext';
 import u from "../../context/UserContext"
 import { toast } from 'react-toastify';
+import { BsClock, BsClockFill } from 'react-icons/all';
 const useStyles = createUseStyles((theme) => ({
     avatar: {
         height: 35,
@@ -136,12 +137,12 @@ function HeaderComponent({ term, onItemClick }) {
         <Row className={classes.container} vertical='center' horizontal='space-between'>
             <span className={classes.title}>{title}</span>
             <Row vertical='center'>
-                <div className={classes.iconStyles}>
-                    <IconSearch />
-                </div>
+                {/*<div className={classes.iconStyles}>*/}
+                {/*    <IconSearch />*/}
+                {/*</div>*/}
                 <div className={classes.iconStyles}>
                     <DropdownComponent
-                        label={<IconBell />}
+                        label={<BsClock/>}
                         options={[
                             {
                                 label: m+"  "+user.name,
@@ -155,7 +156,7 @@ function HeaderComponent({ term, onItemClick }) {
                     />
                 </div>
                 <div className={classes.separator}></div>
-                <DropdownComponent
+                <DropdownComponent style={{position: "absolute",zIndex: 10}}
                     label={
                         <>
                             <span className={classes.name}>{user.name}</span>
@@ -188,7 +189,8 @@ function HeaderComponent({ term, onItemClick }) {
                     ]}
                     position={{
                         top: 52,
-                        right: -6
+                        right: -6,
+
                     }}
                 />
             </Row>

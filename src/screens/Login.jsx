@@ -6,6 +6,7 @@ import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { auth } from '../context/UserContext';
+import log from "./log.jpg"
 // import { GoogleLogin } from 'react-google-login';
 // import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
@@ -219,10 +220,11 @@ const Login = ({ history }) => {
             </div>
           </div>
         </div>
-        <div className='flex-1 bg-indigo-100 text-center hidden lg:flex'>
+        <div className='flex-1 bg-contain bg-full h-full text-center bg-no-repeat hidden lg:flex'
+            >
           <div
             className='m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat'
-            style={{ backgroundImage: `url(${authSvg})` }}
+            style={{ backgroundImage: `url(${log})`,width: "100%"  }}
           ></div>
         </div>
       </div>

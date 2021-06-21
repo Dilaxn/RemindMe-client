@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from 'simple-flexbox';
 import { createUseStyles, useTheme } from 'react-jss';
 import { IconLogo } from 'assets/icons';
-
+import logo from "./logo.png"
 const useStyles = createUseStyles((theme) => ({
     container: {
         marginLeft: 32,
@@ -21,7 +21,11 @@ function LogoComponent() {
     const classes = useStyles({ theme });
     return (
         <Row className={classes.container} horizontal='center' vertical='center'>
-            <IconLogo />
+            <img
+                src={logo}
+                alt='a'
+style={{height:"70px"}}
+            />
             <span className={classes.title}>Remind Me</span>
         </Row>
     );

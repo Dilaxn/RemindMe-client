@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import axios from "axios";
 import { readAllUsers } from '../../context/UserContext';
 import { classes } from 'istanbul-lib-coverage';
+import { toast, ToastContainer } from 'react-toastify';
 
 function getStyles(name, personName, theme) {
     return {
@@ -56,7 +57,7 @@ export default function AddRequest() {
     if(1) {
         return (
             <div>
-
+                <ToastContainer />
                 <div>
                     <fieldset>
                         {/* eslint-disable-next-line react/jsx-no-undef */}
@@ -157,11 +158,11 @@ value={comments}
                                                     setComments('')
                                                 setTaskDescription('')
                                                 setTaskName('')
-                                                    alert("Successfully Added")
+                                                toast.success(`SuccessFully Updated`);
                                                 }
                                             )
                                                 .catch(function (error) {
-                                                    alert("Please check all the details")
+                                                    toast.success("Please check all the details");
                                                     console.log(error);
                                                 })
                                         }

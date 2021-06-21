@@ -51,7 +51,7 @@ export default function Responses() {
 
 
 
-        taskData.map(r => {if(r.doneBy!='' && r.createdBy== user.Id) {
+        taskData.map(r => {if(r.doneBy!='' && r.createdBy== user.email) {
             const data = [
                 r.taskName,
                 r.taskDescription,

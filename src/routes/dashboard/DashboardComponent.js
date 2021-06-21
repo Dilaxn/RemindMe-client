@@ -86,7 +86,7 @@ const pen=[];
                         console.log(c3);
 
                         c3 = c3 + 1
-                    } else if (r.doneBy !== '') {
+                    } else if (r.doneBy === '') {
                         if (r.users.includes(r1.email)) {
                             console.log(c4);
                             pen.push(r.taskName)
