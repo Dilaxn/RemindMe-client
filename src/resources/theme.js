@@ -10,7 +10,13 @@ const color = {
     lightGrayishBlue2: '#DFE0EB',
     paleBlue: '#DDE2FF',
     paleBlueTransparent: 'rgba(221, 226, 255, 0.08)',
-    veryDarkGrayishBlue: '#373a47'
+    veryDarkGrayishBlue: '#373a47',
+     // primary : "#3751FF",
+     // secondary : "#FF5C93",
+     // warning : "#FFC260",
+     // success :"#3CD4A0",
+     // info:"#9013FE"
+
 };
 
 const typography = {

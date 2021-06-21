@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row } from 'simple-flexbox';
 import { createUseStyles, useTheme } from 'react-jss';
 import { IconCheckboxOn, IconCheckboxOff } from 'assets/icons';
 import CardComponent from 'components/cards/CardComponent';
+import { readAllTasks } from '../../context/TaskContext';
+import { auth } from '../../context/UserContext';
 
 const useStyles = createUseStyles((theme) => ({
     addButton: {
@@ -43,6 +45,7 @@ const TAGS = {
 };
 
 function TasksComponent(props) {
+    console.log(props.props);
     const theme = useTheme();
     const classes = useStyles({ theme });
     const [items, setItems] = useState([
@@ -100,29 +103,58 @@ function TasksComponent(props) {
             </Row>
         );
     }
+    let [taskData, setTaskData]  = useState([]);
+    let [user,setUser]= useState([]);
+    const detailss = [];
+
+    useEffect(() => {
+        readAllTasks().then(r => {
+            console.log(r);
+            setTaskData(r);
+        })
+        auth().then(r => {
+            setUser(r)
+            console.log(r);
+        })
+    }, []);
+
+    if (taskData) {
+        taskData.map(r => {if(r.doneBy!=='') {
+            console.log(r.users);
+            if (r.users.includes(user.email)) {
+
+
+                detailss.push(r.taskName);
+                console.log(detailss);
+            }
+        }
+        });
+
+    }
+
+
 
     return (
         <CardComponent
             containerStyles={props.containerStyles}
             title='Tasks'
             link='View all'
-            subtitle='Today'
+            // subtitle='Today'
             items={[
-                <Row horizontal='space-between' vertical='center'>
-                    <span className={[classes.itemTitle, classes.greyTitle].join(' ')}>
-                        Create new task
-                    </span>
-                    {renderAddButton()}
-                </Row>,
-                ...items.map((item, index) => (
+                // <Row horizontal='space-between' vertical='center'>
+                //     <span className={[classes.itemTitle, classes.greyTitle].join(' ')}>
+                //         Create new task
+                //     </span>
+                //     {renderAddButton()}
+                // </Row>,
+                detailss.map(item =>
+
                     <TaskComponent
                         classes={classes}
-                        index={index}
                         item={item}
-                        onCheckboxClick={onCheckboxClick}
-                        onTagClick={onTagClick}
+
                     />
-                ))
+                )
             ]}
         />
     );

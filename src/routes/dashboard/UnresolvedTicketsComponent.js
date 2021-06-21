@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row } from 'simple-flexbox';
 import { createUseStyles, useTheme } from 'react-jss';
 import CardComponent from 'components/cards/CardComponent';
+import { readAllTasks } from '../../context/TaskContext';
+import { auth } from '../../context/UserContext';
 
 const useStyles = createUseStyles((theme) => ({
     itemTitle: {
@@ -25,20 +27,42 @@ function UnresolvedTicketsComponent({ containerStyles }) {
             </Row>
         );
     }
+    let [taskData, setTaskData]  = useState([]);
+    let [user,setUser]= useState([]);
+    const detailss = [];
 
+
+    useEffect(() => {
+        readAllTasks().then(r => {
+            console.log(r);
+            setTaskData(r);
+        })
+        auth().then(r => {
+            setUser(r)
+            console.log(r);
+        })
+    }, []);
+
+    if (taskData) {
+        taskData.map(r => {if(r.doneBy!=='' && r.createdBy=== user.email) {
+            const data = [
+                r.taskName+":- ",
+                r.doneBy
+            ]
+
+            detailss.push(renderStat(data));
+        }
+        });
+
+    }
     return (
         <CardComponent
             containerStyles={containerStyles}
-            title='Unresolved tickets'
+            title='Responses'
             link='View details'
-            subtitle='Group:'
-            subtitleTwo='Support'
-            items={[
-                renderStat('Waiting on Feature Request', 4238),
-                renderStat('Awaiting Customer Response', 1005),
-                renderStat('Awaiting Developer Fix', 914),
-                renderStat('Pending', 281)
-            ]}
+            subtitle='Name:'
+            subtitleTwo='DoneBy'
+            items={detailss}
         />
     );
 }

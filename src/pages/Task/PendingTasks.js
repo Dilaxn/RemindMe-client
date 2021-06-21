@@ -53,7 +53,7 @@ export default function PendingTasks() {
 
         taskData.map(r => {if(r.doneBy=='' ) {
             console.log(r.users);
-            if(r.users.includes(user.Id))
+            if(r.users.includes(user.email))
             {
                 const data = [
                     r.taskName,

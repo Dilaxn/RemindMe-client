@@ -8,6 +8,7 @@ import TasksComponent from './TasksComponent';
 import { auth } from '../../context/UserContext';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
+import { readAllTasks } from '../../context/TaskContext';
 
 const useStyles = createUseStyles({
     cardsContainer: {
@@ -50,15 +51,65 @@ const useStyles = createUseStyles({
 
 function DashboardComponent() {
     let [user, setUser]  = useState('');
+    let [taskData, setTaskData]  = useState([]);
+    let [pendingReqs, setPendingReqs]  = useState('');
+    let [respones, setRespones]  = useState('');
+    let [pendingTasks, setPendingTasks]  = useState('');
+    let [comTasks, setComTasks]  = useState('');
+    // let [pen, setPen]  = useState([]);
+const pen=[];
+    const tokenString = localStorage.getItem('id_token');
 
+    const details1 = [];
+    const details2 = [];
+    const details3 = [];
+    const details4 = [];
+    useEffect(() => {
+        auth().then(r1 => {
+            setUser(r1)
+            console.log(r1);
+            readAllTasks().then(res => {
+                console.log(res);
+                setTaskData(res);
+                let c = 0, c2 = 0, c3 = 0, c4 = 0;
+                res.map(r => {
+                    console.log(r);
+                    if (r.doneBy === '' && r.createdBy === r1.email) {
+                        console.log(c);
+
+                        c = c + 1;
+                    } else if (r.doneBy !== '' && r.createdBy === r1.email) {
+                        console.log(c2);
+
+                        c2 = c2 + 1
+                    } else if (r.doneBy === r1.email) {
+                        console.log(c3);
+
+                        c3 = c3 + 1
+                    } else if (r.doneBy !== '') {
+                        if (r.users.includes(r1.email)) {
+                            console.log(c4);
+                            pen.push(r.taskName)
+                            console.log(pen);
+                            c4 = c4 + 1
+                        }
+                    }
+                });
+                console.log(c + c2 + c3 + c4);
+                setPendingReqs(c)
+                setRespones(c2)
+                setPendingTasks(c4)
+                setComTasks(c3)
+            })
+
+        })
+
+
+
+
+    }, []);
     let history = useHistory()
 
-    useEffect(() => {
-        auth().then(r => {
-            setUser(r);
-            // console.log(r);
-        })
-    }, []);
     const classes = useStyles();
     return (
         <Column>
@@ -78,13 +129,13 @@ function DashboardComponent() {
                 >
                     <MiniCardComponent
                         className={classes.miniCardContainer}
-                        title='Unresolved'
-                        value='60'
+                        title='Pending Requests'
+                        value={pendingReqs}
                     />
                     <MiniCardComponent
                         className={classes.miniCardContainer}
-                        title='Overdue'
-                        value='16'
+                        title='Responses'
+                        value={respones}
                     />
                 </Row>
                 <Row
@@ -96,26 +147,24 @@ function DashboardComponent() {
                 >
                     <MiniCardComponent
                         className={classes.miniCardContainer}
-                        title='Open'
-                        value='43'
+                        title='Pending Tasks'
+                        value={pendingTasks}
                     />
                     <MiniCardComponent
                         className={classes.miniCardContainer}
-                        title='On hold'
-                        value='64'
+                        title='Completed Tasks'
+                        value={comTasks}
                     />
                 </Row>
             </Row>
-            <div className={classes.todayTrends}>
-                <TodayTrendsComponent />
-            </div>
+
             <Row
                 horizontal='space-between'
                 className={classes.lastRow}
                 breakpoints={{ 1024: 'column' }}
             >
                 <UnresolvedTicketsComponent containerStyles={classes.unresolvedTickets} />
-                <TasksComponent containerStyles={classes.tasks} />
+                <TasksComponent props={pen} containerStyles={classes.tasks} />
             </Row>
         </Column>
     );

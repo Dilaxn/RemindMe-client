@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
-
 /* Box sizing rules */
 *,
 *::before,
@@ -60,6 +59,7 @@ img {
 article > * + * {
     margin-top: 1em;
 }
+
 
 /* Inherit fonts for inputs and buttons */
 input,

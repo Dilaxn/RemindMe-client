@@ -114,7 +114,7 @@ export default function AddRequest() {
                                         // MenuProps={MenuProps}
                                     >
                                         {users.map((option) => (
-                                            <MenuItem key={option._id} value={option._id} style={getStyles(option.email, sel, theme)}>
+                                            <MenuItem key={option._id} value={option.email} style={getStyles(option.email, sel, theme)}>
                                                 {option.email}
                                             </MenuItem>
                                         ))}
