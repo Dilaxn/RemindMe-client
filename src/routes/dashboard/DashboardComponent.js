@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import MiniCardComponent from 'components/cards/MiniCardComponent';
 import TodayTrendsComponent from './TodayTrendsComponent';
 import UnresolvedTicketsComponent from './UnresolvedTicketsComponent';
-import TasksComponent from './TasksComponent';
+import UnresolvedTicketComponent from './tasksC'
 import { auth } from '../../context/UserContext';
 import { useHistory } from 'react-router';
 import { toast } from 'react-toastify';
@@ -164,7 +164,7 @@ const pen=[];
                 breakpoints={{ 1024: 'column' }}
             >
                 <UnresolvedTicketsComponent containerStyles={classes.unresolvedTickets} />
-                <TasksComponent props={pen} containerStyles={classes.tasks} />
+                <UnresolvedTicketComponent containerStyles={classes.unresolvedTickets} />
             </Row>
         </Column>
     );

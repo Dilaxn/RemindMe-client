@@ -108,29 +108,39 @@ function TasksComponent(props) {
     const detailss = [];
 
     useEffect(() => {
-        readAllTasks().then(r => {
-            console.log(r);
-            setTaskData(r);
+
+        auth().then(r1 => {
+            setUser(r1)
+            readAllTasks().then(res => {
+                console.log(res);
+                setTaskData(res);
+                res.map(r => {if(r.doneBy !=='') {
+                    console.log(r.users);
+                    if (r.users.includes(user.email)) {
+
+
+                        detailss.push(r.taskName);
+                        console.log(detailss);
+                    }
+                }
+            })
         })
-        auth().then(r => {
-            setUser(r)
-            console.log(r);
         })
     }, []);
 
-    if (taskData) {
-        taskData.map(r => {if(r.doneBy!=='') {
-            console.log(r.users);
-            if (r.users.includes(user.email)) {
-
-
-                detailss.push(r.taskName);
-                console.log(detailss);
-            }
-        }
-        });
-
-    }
+    // if (taskData) {
+    //     taskData.map(r => {if(r.doneBy!=='') {
+    //         console.log(r.users);
+    //         if (r.users.includes(user.email)) {
+    //
+    //
+    //             detailss.push(r.taskName);
+    //             console.log(detailss);
+    //         }
+    //     }
+    //     });
+    //
+    // }
 
 
 

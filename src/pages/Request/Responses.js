@@ -172,7 +172,7 @@ export default function Responses() {
                                     data: JSON.stringify({ tasks })
                                 })
                                     .then(function(response) {
-                                        toast.success(`Hey  Task Successfully Deleted!`);
+                                        toast.success(`Task Successfully Deleted!`);
                                         readAllTasks().then(r => {
                                             console.log(r);
                                             setTaskData(r);

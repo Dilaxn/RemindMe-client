@@ -176,7 +176,7 @@ export default function PendingTasks() {
                                     data: JSON.stringify({ tasks })
                                 })
                                     .then(function(response) {
-                                        toast.success(`Hey  Task Successfully Removed!`);
+                                        toast.success(`Task Successfully Completed by you!`);
                                         readAllTasks().then(r => {
                                             console.log(r);
                                             setTaskData(r);
