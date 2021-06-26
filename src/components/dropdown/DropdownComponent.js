@@ -87,6 +87,7 @@ function DropdownComponent({ label, options, position }) {
                 <Column className={classes.dropdownItemsContainer}>
                     {options.map((option, index) => (
                         <button
+                            style={{position: "relative",zIndex: 1,background:"white"}}
                             key={`option-${index}`}
                             className={classes.dropdownItem}
                             onClick={() => onItemClick(option.onClick)}

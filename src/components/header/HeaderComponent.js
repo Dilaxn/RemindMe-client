@@ -156,7 +156,7 @@ function HeaderComponent({ term, onItemClick }) {
                     />
                 </div>
                 <div className={classes.separator}></div>
-                <DropdownComponent style={{position: "absolute",zIndex: 10}}
+                <DropdownComponent style={{position: "fixed",zIndex: 10000}}
                     label={
                         <>
                             <span className={classes.name}>{user.name}</span>

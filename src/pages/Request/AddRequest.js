@@ -99,7 +99,7 @@ export default function AddRequest() {
                                 </TextField>
 
                                 <FormControl   style={{margin: 'auto', width: "80%", align: 'center', marginTop: '40px'}} className={classes.formControl}>
-                                    <InputLabel  helperText="Select users who want to complete" style={{marginLeft: '10px'}}  id="demo-mutiple-name-label">Name</InputLabel>
+                                    <InputLabel  helperText="Select users who want to complete" style={{marginLeft: '10px'}}  id="demo-mutiple-name-label">User</InputLabel>
                                     <Select
                                         labelId="demo-mutiple-name-label"
                                         id="demo-mutiple-name"
