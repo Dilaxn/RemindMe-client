@@ -34,12 +34,14 @@ export default function AllUsers() {
 
     useEffect(() => {
         readAllUsers().then(r => {
-            console.log(r);
+
+
             setUserData(r);
         })
         auth().then(r => {
             setUser(r)
-            console.log(r);
+
+
         })
     }, []);
 

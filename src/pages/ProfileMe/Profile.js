@@ -67,7 +67,7 @@ export default function Profile({ term }) {
             setUser(r)
             setName(r.name)
         })
-        console.log("updated");
+
     }, [up]);
     const classes = useStyles();
     // const onChangePicture = e => {
@@ -90,7 +90,7 @@ export default function Profile({ term }) {
 // setImgData('avatar', event.target.files[0])
         // imgData.append('avatar', event.target.files[0])
 
-        console.log(event.target.files[0])
+
     };
     const tokenString = localStorage.getItem('id_token');
     let history = useHistory()
@@ -112,7 +112,7 @@ export default function Profile({ term }) {
                             data.append('avatar', picture)
                             data.append('employee', user.Id)
 
-                            console.log(data)
+
                             return axios.patch(`${process.env.REACT_APP_API_URL}/pic`,data , {
                                 headers: {
                                     "Content-type": "multipart/form-data"
@@ -155,16 +155,16 @@ export default function Profile({ term }) {
 
 
                                         }
-                                        console.log(leaveEntitlement)
+
                                         return axios.post(`${process.env.REACT_APP_API_URL}/name`, leaveEntitlement).then(function (response) {
                                                 setName(response.data.name)
-
+HeaderComponent({props:"ok"})
                                             toast.success(`SuccessFully Updated`);
                                             }
                                         )
                                             .catch(function (error) {
                                                 toast.error(`Error updating`);
-                                                console.log(error);
+
                                             })
                                     }} />
                                 </InputAdornment>

@@ -34,21 +34,17 @@ function UnresolvedTicketsComponent({ containerStyles }) {
 
     useEffect(() => {
         readAllTasks().then(r => {
-            console.log(r);
             setTaskData(r);
         })
         auth().then(r => {
             setUser(r)
-            console.log(r);
         })
     }, []);
 
     if (taskData) {
 
         taskData.map(r => {if(r.doneBy==='') {
-            console.log(r,user.email);
             if (r.users.includes(user.email)) {
-                console.log("hello");
                 const data = [
                     r.taskName + ":- ",
                     r.createdBy,

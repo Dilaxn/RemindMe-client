@@ -135,18 +135,7 @@ function SidebarComponent() {
                 icon={BsPersonBoundingBox}
                 onClick={() => onClick(SLUGS.agents)}
             />
-            <MenuItem
-                id={SLUGS.articles}
-                title='Feedback'
-                icon={IconArticles}
-                onClick={() => onClick(SLUGS.articles)}
-            />
-            <MenuItem
-                id={SLUGS.subscription}
-                title='About Me'
-                icon={IconSubscription}
-                onClick={() => onClick(SLUGS.subscription)}
-            />
+
             <div className={classes.separator}></div>
 
 
@@ -155,7 +144,7 @@ function SidebarComponent() {
                 removeCookie('token');
                 removeLocalStorage('user');
                 history.push('/login')
-                console.log('logout');
+
             }} />
         </Menu>
     );

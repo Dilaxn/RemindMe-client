@@ -37,7 +37,8 @@ export default function AddRequest() {
     useEffect(() => {
 
         readAllUsers().then(r=> {
-            console.log(r);
+
+
             setUsers(r);
         })
     }, []);
@@ -153,7 +154,8 @@ value={comments}
 
 
                                             }
-                                            console.log(leaveEntitlement)
+
+
                                             return axios.post(`${process.env.REACT_APP_API_URL}/task`, leaveEntitlement).then(function (response) {
                                                     setComments('')
                                                 setTaskDescription('')
@@ -163,7 +165,8 @@ value={comments}
                                             )
                                                 .catch(function (error) {
                                                     toast.success("Please check all the details");
-                                                    console.log(error);
+
+
                                                 })
                                         }
                                         }>

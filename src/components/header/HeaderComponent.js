@@ -9,9 +9,9 @@ import { IconBell, IconSearch } from 'assets/icons';
 import DropdownComponent from 'components/dropdown';
 import { removeCookie, removeLocalStorage } from '../../helpers/auth';
 import { auth } from '../../context/UserContext';
-import u from "../../context/UserContext"
 import { toast } from 'react-toastify';
 import { BsClock, BsClockFill } from 'react-icons/all';
+
 const useStyles = createUseStyles((theme) => ({
     avatar: {
         height: 35,
@@ -63,8 +63,7 @@ const useStyles = createUseStyles((theme) => ({
     }
 }));
 
-function HeaderComponent({ term, onItemClick }) {
-
+function HeaderComponent(props) {
 
     const [imageHash, setImageHash]  = useState(Date.now());
     const { push } = useHistory();
@@ -91,7 +90,7 @@ function HeaderComponent({ term, onItemClick }) {
             setM('good evening')
         }
         setImageHash(Date.now)
-    }, [onItemClick]);
+    }, [props.props]);
     const { currentItem } = useContext(SidebarContext);
     const theme = useTheme();
     const classes = useStyles({ theme });
@@ -146,7 +145,6 @@ function HeaderComponent({ term, onItemClick }) {
                         options={[
                             {
                                 label: m+"  "+user.name,
-                                onClick: () => console.log('Notification #2')
                             }
                         ]}
                         position={{
@@ -183,7 +181,6 @@ function HeaderComponent({ term, onItemClick }) {
                                 removeCookie('token');
                                 removeLocalStorage('user');
                                 history.push('/login')
-                                console.log('logout');
                             }
                         }
                     ]}

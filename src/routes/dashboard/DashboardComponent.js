@@ -67,35 +67,27 @@ const pen=[];
     useEffect(() => {
         auth().then(r1 => {
             setUser(r1)
-            console.log(r1);
             readAllTasks().then(res => {
-                console.log(res);
                 setTaskData(res);
                 let c = 0, c2 = 0, c3 = 0, c4 = 0;
                 res.map(r => {
-                    console.log(r);
+
                     if (r.doneBy === '' && r.createdBy === r1.email) {
-                        console.log(c);
 
                         c = c + 1;
                     } else if (r.doneBy !== '' && r.createdBy === r1.email) {
-                        console.log(c2);
 
                         c2 = c2 + 1
                     } else if (r.doneBy === r1.email) {
-                        console.log(c3);
 
                         c3 = c3 + 1
                     } else if (r.doneBy === '') {
                         if (r.users.includes(r1.email)) {
-                            console.log(c4);
                             pen.push(r.taskName)
-                            console.log(pen);
                             c4 = c4 + 1
                         }
                     }
                 });
-                console.log(c + c2 + c3 + c4);
                 setPendingReqs(c)
                 setRespones(c2)
                 setPendingTasks(c4)

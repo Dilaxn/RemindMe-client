@@ -34,12 +34,14 @@ export default function PendingTasks() {
 
     useEffect(() => {
         readAllTasks().then(r => {
-            console.log(r);
+
+
             setTaskData(r);
         })
         auth().then(r => {
             setUser(r)
-            console.log(r);
+
+
         })
     }, []);
 
@@ -52,7 +54,8 @@ export default function PendingTasks() {
 
 
         taskData.map(r => {if(r.doneBy=='' ) {
-            console.log(r.users);
+
+
             if(r.users.includes(user.email))
             {
                 const data = [
@@ -76,7 +79,8 @@ export default function PendingTasks() {
         const ids = RowsDeleted.data.map(d => d.dataIndex);
         detailss.push(data);
         // const idsToDeleted = ids.map(d => shells[d][9]);   //This is possibly this, ids.map(d => data[d][9])
-        console.log(ids)  //Now you will get data
+
+    //Now you will get data
         // axios({
         //     method: 'post',
         //     url: 'http://localhost:5000/eliminado',
@@ -178,10 +182,12 @@ export default function PendingTasks() {
                                     .then(function(response) {
                                         toast.success(`Task Successfully Completed by you!`);
                                         readAllTasks().then(r => {
-                                            console.log(r);
+
+
                                             setTaskData(r);
                                         })
-                                        console.log(response);
+
+
                                     })
 
                             }}>Complete</Button>
@@ -230,7 +236,8 @@ export default function PendingTasks() {
             options: {
                 display: 'excluded',
                 onRowClick: (rowData, rowState) => {
-                    console.log(rowData, rowState);
+
+
                 },
             }
         },

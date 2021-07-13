@@ -34,12 +34,10 @@ function UnresolvedTicketsComponent({ containerStyles }) {
 
     useEffect(() => {
         readAllTasks().then(r => {
-            console.log(r);
             setTaskData(r);
         })
         auth().then(r => {
             setUser(r)
-            console.log(r);
         })
     }, []);
 

@@ -45,7 +45,7 @@ const TAGS = {
 };
 
 function TasksComponent(props) {
-    console.log(props.props);
+
     const theme = useTheme();
     const classes = useStyles({ theme });
     const [items, setItems] = useState([
@@ -112,15 +112,19 @@ function TasksComponent(props) {
         auth().then(r1 => {
             setUser(r1)
             readAllTasks().then(res => {
-                console.log(res);
+
                 setTaskData(res);
                 res.map(r => {if(r.doneBy !=='') {
-                    console.log(r.users);
+
                     if (r.users.includes(user.email)) {
 
 
                         detailss.push(r.taskName);
-                        console.log(detailss);
+
+
+
+
+
                     }
                 }
             })
