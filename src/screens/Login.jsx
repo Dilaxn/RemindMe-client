@@ -6,7 +6,7 @@ import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { auth } from '../context/UserContext';
-import log from './log.jpg';
+import log from './log.png';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 // import FacebookLogin from 'react-facebook-login';
