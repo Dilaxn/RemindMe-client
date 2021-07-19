@@ -156,9 +156,9 @@ export default function Profile({ term }) {
 
                                         }
 
-                                        return axios.post(`${process.env.REACT_APP_API_URL}/name`, leaveEntitlement).then(function (response) {
+                                        return axios.patch(`${process.env.REACT_APP_API_URL}/name`, leaveEntitlement).then(function (response) {
                                                 setName(response.data.name)
-HeaderComponent({props:"ok"})
+// HeaderComponent({props:"ok"})
                                             toast.success(`SuccessFully Updated`);
                                             }
                                         )

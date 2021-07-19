@@ -124,10 +124,12 @@ const pen=[];
                         title='Pending Requests'
                         value={pendingReqs}
                     />
+
                     <MiniCardComponent
                         className={classes.miniCardContainer}
                         title='Responses'
                         value={respones}
+
                     />
                 </Row>
                 <Row
