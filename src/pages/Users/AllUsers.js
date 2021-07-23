@@ -57,6 +57,7 @@ export default function AllUsers() {
             const data = [
                 r.name,
                 r.email,
+                r.avatar
 
             ]
 
@@ -82,6 +83,13 @@ export default function AllUsers() {
         },
         {
             name: "Email",
+            options: {
+                display: true,
+            }
+        }
+        ,
+        {
+            name: "Pic",
             options: {
                 display: true,
             }

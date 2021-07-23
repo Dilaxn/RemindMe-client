@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // const Dotenv = require("dotenv-webpack");
 
 require('dotenv').config()
+
 ReactDOM.render(
     <ThemeProvider theme={Theme}>
         <Router>
