@@ -13,6 +13,7 @@ const PendingRequests = lazy(() => import('../pages/Request/PendingRequests'));
 const Responses = lazy(() => import('../pages/Request/Responses'));
 const AllUsers = lazy(() => import('../pages/Users/AllUsers'));
 const ProfileMe = lazy(() => import('../pages/ProfileMe/Profile'));
+const ProfileF = lazy(() => import('../pages/ProfileMe/ProfileF'));
 const DashboardComponent = lazy(() => import('./dashboard'));
 const PendingTasks = lazy(() => import('../pages/Task/PendingTasks'));
 const CompletedTasks = lazy(() => import('../pages/Task/CompletedTasks'))
@@ -38,6 +39,7 @@ function PrivateRoutes() {
                 <Route exact path={SLUGS.ideas} render={() => <div>ideas</div>} />
                 <Route exact path={SLUGS.users} component={AllUsers} />
                 <Route exact path={SLUGS.agents} component={ProfileMe} />
+                <Route exact path={SLUGS.prof} component={ProfileF} />
                 <Route exact path={SLUGS.articles} render={() => <div>articles</div>} />
                 <Route exact path={SLUGS.settings} render={() => <Login/>}  />
                 <Route exact path={SLUGS.profile} render={() => <Profile/>} />

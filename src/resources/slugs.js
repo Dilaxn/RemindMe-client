@@ -13,6 +13,7 @@ export default {
     completed: '/tasks/completed',
     users: '/users',
     agents: '/agents',
+    prof:"/prof",
     articles: '/articles',
     settings: '/login',
     profile: '/profile',
