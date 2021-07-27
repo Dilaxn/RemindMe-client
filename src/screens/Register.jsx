@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import authSvg from '../assests/auth.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import { authenticate, isAuth } from '../helpers/auth';
 import { Link, Redirect } from 'react-router-dom';
+import { auth } from '../context/UserContext';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,8 +15,18 @@ const Register = () => {
     textChange: 'Sign Up'
   });
 
+
+  useEffect(() => {
+    toast.info(`Fields should be filled`, { autoClose: false });
+  }, []);
   const { name, email, password1, password2, textChange } = formData;
   const handleChange = text => e => {
+
+    if(password1.length>5 && password2.length>5 && password1===password2){
+      toast.dismiss();
+
+      toast.success(`All fields filled correctly`);
+    }
     setFormData({ ...formData, [text]: e.target.value });
   };
   const handleSubmit = e => {
@@ -23,6 +34,7 @@ const Register = () => {
     if (name && email && password1) {
       if (password1 === password2) {
         setFormData({ ...formData, textChange: 'Submitting' });
+
         axios
           .post(`${process.env.REACT_APP_API_URL}/register`, {
             name,
@@ -106,6 +118,7 @@ const Register = () => {
                   value={password2}
                 />
                 <button
+                    disabled={password1.length<6 || password1.length<6 || password1!==password2 }
                   type='submit'
                   className='mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'
                 >
