@@ -111,6 +111,7 @@ export default function Profile({ term }) {
 
                             data.append('avatar', picture)
                             data.append('employee', user.Id)
+                            toast.info(`Updating Profile Picture`, { autoClose: 30000 });
 
 
                             return axios.patch(`${process.env.REACT_APP_API_URL}/pic`,data , {
@@ -123,6 +124,8 @@ export default function Profile({ term }) {
                                 //     setUser(r)
                                 //     console.log(r);
                                 // })
+                                toast.dismiss();
+
                                 toast.success(`SuccessFully Updated`);
 
                                 setImageHash(Date.now());
@@ -149,6 +152,7 @@ export default function Profile({ term }) {
                             endAdornment: (
                                 <InputAdornment position="end">
                                     <AccountCircle onClick={e=>{
+                                        toast.info(`Updating Name`, { autoClose: 30000 });
                                         const leaveEntitlement = {
                                             "_id": user.Id,
                                             "name": name
@@ -159,7 +163,9 @@ export default function Profile({ term }) {
                                         return axios.patch(`${process.env.REACT_APP_API_URL}/name`, leaveEntitlement).then(function (response) {
                                                 setName(response.data.name)
 // HeaderComponent({props:"ok"})
-                                            toast.success(`SuccessFully Updated`);
+                                                toast.dismiss();
+
+                                                toast.success(`SuccessFully Updated`);
                                             }
                                         )
                                             .catch(function (error) {
