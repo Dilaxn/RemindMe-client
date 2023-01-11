@@ -55,7 +55,7 @@
         "@material-ui/styles": "^4.11.4",
         "components": "^0.1.0",
         "gh-pages": "^2.0.1",
-        "jsonwebtoken": "^8.5.1",
+        "jsonwebtoken": "^9.0.0",
         "mui-datatables": "^3.7.7",
         "multer": "^1.4.2",
         "react-facebook-login": "^4.1.1",
